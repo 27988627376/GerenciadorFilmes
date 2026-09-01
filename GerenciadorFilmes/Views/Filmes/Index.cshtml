@@ -1,0 +1,80 @@
+﻿@model GerenciadorFilmes.ViewModels.FilmesIndexViewModel
+
+@{
+    ViewData["Title"] = "Filmes Acadêmicos";
+}
+
+<p class="sort-links">
+    Ordenar por:
+    <a asp-action="Index"
+       asp-route-pesquisa="@Model.TextoPesquisa"
+       asp-route-ordenarPor="titulo"
+       class="@(Model.OrdenarPor == "titulo" ? "active" : null)">Título</a>
+    <a asp-action="Index"
+       asp-route-pesquisa="@Model.TextoPesquisa"
+       asp-route-ordenarPor="cargaHoraria"
+       class="@(Model.OrdenarPor == "duracao" ? "active" : null)">Duração</a>
+</p>
+
+<form asp-action="Index" method="get" class="toolbar">
+    <div class="search-form">
+        <input type="text"
+               name="pesquisa"
+               value="@Model.TextoPesquisa"
+               class="input"
+               placeholder="Pesquisar por título..." />
+        <input type="hidden" name="ordenarPor" value="@Model.OrdenarPor" />
+        <button type="submit" class="button">Pesquisar</button>
+        <a asp-action="Index" class="button secondary">Limpar</a>
+    </div>
+</form>
+
+<div class="page-heading">
+    <div>
+        <h1>Filmes Acadêmicos</h1>
+        <p>Gerencie os filmes cadastrados.</p>
+    </div>
+    <a asp-action="Cadastrar" class="button">Novo filme</a>
+</div>
+
+@if (TempData["Mensagem"] is not null)
+{
+    <div class="alert success">
+        @TempData["Mensagem"]
+    </div>
+}
+
+@if (Model.Filmes.Count == 0)
+{
+    <div class="empty">Nenhum filme cadastrado.</div>
+}
+else
+{
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Duração</th>
+                    <th>Genero</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var filme in Model.Filmes)
+                {
+                    <tr>
+                        <td>@filme.Titulo</td>
+                        <td>@filme.DuracaoMinutos horas</td>
+                        <td>@filme.Genero?.Nome</td>
+                        <td class="actions">
+                            <a asp-action="Detalhes" asp-route-id="@filme.Id">Detalhes</a> |
+                            <a asp-action="Editar" asp-route-id="@filme.Id">Editar</a> |
+                            <a class="danger-link" asp-action="Excluir" asp-route-id="@filme.Id">Excluir</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

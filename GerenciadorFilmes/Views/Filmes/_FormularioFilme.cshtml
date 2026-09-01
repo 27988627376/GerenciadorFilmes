@@ -1,0 +1,27 @@
+﻿@model GerenciadorFilmes.ViewModels.FilmeFormularioViewModel
+
+<div>
+    <label asp-for="Titulo"></label>
+    <input asp-for="Titulo" class="input" />
+    <span asp-validation-for="Titulo" class="validation"></span>
+</div>
+
+<div>
+    <label asp-for="Duracao"></label>
+    <textarea asp-for="Duracao" class="input"></textarea>
+    <span asp-validation-for="Duracao" class="validation"></span>
+</div>
+
+<div>
+    <label asp-for="AnoLancamento"></label>
+    <input asp-for="AnoLancamento" class="input" />
+    <span asp-validation-for="AnoLancamento" class="validation"></span>
+</div>
+
+<div>
+    <label asp-for="GeneroId"></label>
+    <select asp-for="GeneroId" asp-items="Model.Genero" class="input">
+        <option value="">Selecione um genero</option>
+    </select>
+    <span asp-validation-for="GeneroId" class="validation"></span>
+</div>

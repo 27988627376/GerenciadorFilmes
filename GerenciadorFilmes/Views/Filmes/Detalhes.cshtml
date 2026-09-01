@@ -1,0 +1,24 @@
+﻿@model GerenciadorFilmes.Models.Filme
+
+@{
+    ViewData["Title"] = "Detalhes do filme";
+}
+
+<h1>Detalhes do filme</h1>
+
+<dl class="details">
+    <dt>Título</dt>
+    <dd>@Model.Titulo</dd>
+
+    <dt>Duração</dt>
+    <dd>@Model.DuracaoMinutos</dd>
+
+    <dt>Ano </dt>
+    <dd>@Model.AnoLancamento</dd>
+
+    <dt>Genero</dt>
+    <dd>@Model.Genero?.Nome</dd>
+</dl>
+
+<a asp-action="Editar" asp-route-id="@Model.Id" class="button">Editar</a>
+<a asp-action="Index" class="button secondary">Voltar</a>

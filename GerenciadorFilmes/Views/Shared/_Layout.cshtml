@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GerenciadorFilmes</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/GerenciadorFilmes.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+
+
+        <nav class="nav">
+            <a href="">GERENCIADOR FILMES</a>
+            <a class="brand" asp-controller="" asp-action=""></a>
+            <a asp-controller="Filmes" asp-action="Index">Home</a>
+            <a asp-controller="Filmes" asp-action="Cadastrar">Cadastrar Filme</a>
+        </nav>
+    </header>
+
+
+
+    <div class="container">
+        <main class="container">
+            @RenderBody()
+        </main>
+        @await RenderSectionAsync("Scripts", required: false)
+    </div>
+</body>
+</html>
